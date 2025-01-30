@@ -14,7 +14,7 @@ public class ContactTransform implements Function<ExternalContact, Contact> {
 
   @Override
   public Contact apply(ExternalContact externalContact) {
-    return new Contact(externalContact.getId(),
+    return new Contact(Integer.parseInt(externalContact.getId()),
         externalContact.getName(),
         externalContact.getEmail(),
         source,

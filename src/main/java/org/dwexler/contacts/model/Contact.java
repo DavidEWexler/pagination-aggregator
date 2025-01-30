@@ -4,7 +4,7 @@ import java.time.OffsetDateTime;
 
 public class Contact {
 
-  private String id;
+  private int id;
   private String name;
   private String email;
   private String source;
@@ -14,7 +14,7 @@ public class Contact {
   public Contact() {
   }
 
-  public Contact(String id, String name, String email, String source, OffsetDateTime createdAt,
+  public Contact(int id, String name, String email, String source, OffsetDateTime createdAt,
       OffsetDateTime updatedAt) {
     this.id = id;
     this.name = name;
@@ -24,11 +24,11 @@ public class Contact {
     this.updatedAt = updatedAt;
   }
 
-  public String getId() {
+  public int getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(int id) {
     this.id = id;
   }
 
