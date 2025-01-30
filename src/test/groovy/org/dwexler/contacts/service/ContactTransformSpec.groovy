@@ -24,7 +24,7 @@ class ContactTransformSpec extends Specification {
     def contact = transform.apply(externalContact)
 
     then:
-    contact.id == "1"
+    contact.id == 1
     contact.name == "Unit Test"
     contact.email == "whatever@unit.test"
     contact.source == "SPOCK_TEST"
