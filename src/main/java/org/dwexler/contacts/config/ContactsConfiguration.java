@@ -1,6 +1,7 @@
 package org.dwexler.contacts.config;
 
-import org.dwexler.contacts.service.ContactsPageRetriever;
+import org.dwexler.contacts.service.ContactPageRetriever;
+import org.dwexler.contacts.service.ContactTransform;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
@@ -14,7 +15,12 @@ public class ContactsConfiguration {
   }
 
   @Bean
-  public ContactsPageRetriever contactsPageRetriever(ExternalApiConfig config) {
-    return new ContactsPageRetriever(config, new RestTemplate());
+  public ContactTransform getContactTransform(ExternalApiConfig config) {
+    return new ContactTransform(config);
+  }
+
+  @Bean
+  public ContactPageRetriever contactsPageRetriever(ExternalApiConfig config) {
+    return new ContactPageRetriever(config, new RestTemplate());
   }
 }

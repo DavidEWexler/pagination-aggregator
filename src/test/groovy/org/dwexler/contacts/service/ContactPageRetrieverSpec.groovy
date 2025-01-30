@@ -15,7 +15,7 @@ import spock.lang.Specification
 
 import java.nio.charset.StandardCharsets
 
-class ContactsPageRetrieverSpec extends Specification {
+class ContactPageRetrieverSpec extends Specification {
   def "should retrieve contacts page successfully"() {
     given: "A JSON Response from the API"
     def restTemplate = Mock(RestTemplate)
@@ -27,7 +27,7 @@ class ContactsPageRetrieverSpec extends Specification {
     headers.add("Total-Pages", "50")
     headers.add("Total-Count", "1000")
 
-    def retriever = new ContactsPageRetriever(config, restTemplate)
+    def retriever = new ContactPageRetriever(config, restTemplate)
 
     when:
     def result = retriever.getPage(1)
@@ -49,7 +49,7 @@ class ContactsPageRetrieverSpec extends Specification {
     def mockContacts = loadJson("response.json", ExternalContact[].class)
     def headers = new HttpHeaders()
 
-    def retriever = new ContactsPageRetriever(config, restTemplate)
+    def retriever = new ContactPageRetriever(config, restTemplate)
 
     when:
     retriever.getPage(1)

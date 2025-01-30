@@ -2,7 +2,7 @@ package org.dwexler.contacts.service;
 
 import java.util.Arrays;
 import java.util.Objects;
-import org.dwexler.contacts.client.ContactsPageResponse;
+import org.dwexler.contacts.client.ContactPageResponse;
 import org.dwexler.contacts.client.ExternalContact;
 import org.dwexler.contacts.config.ExternalApiConfig;
 import org.springframework.http.HttpEntity;
@@ -13,19 +13,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-public class ContactsPageRetriever {
+public class ContactPageRetriever {
 
   private final String uri;
   private final String token;
   private final RestTemplate restTemplate;
 
-  public ContactsPageRetriever(ExternalApiConfig config, RestTemplate restTemplate) {
+  public ContactPageRetriever(ExternalApiConfig config, RestTemplate restTemplate) {
     this.uri = config.getApiUri();
     this.token = config.getApiToken();
     this.restTemplate = restTemplate;
   }
 
-  public ContactsPageResponse getPage(int page) {
+  public ContactPageResponse getPage(int page) {
     String url = UriComponentsBuilder.fromUriString(uri)
         .queryParam("page", page)
         .toUriString();
@@ -44,7 +44,7 @@ public class ContactsPageRetriever {
       int totalCount = Integer.parseInt(
           Objects.requireNonNull(responseHeaders.getFirst("Total-Count")));
 
-      return new ContactsPageResponse(Arrays.asList(Objects.requireNonNull(response.getBody())),
+      return new ContactPageResponse(Arrays.asList(Objects.requireNonNull(response.getBody())),
           totalPages, totalCount);
 
     } else {
